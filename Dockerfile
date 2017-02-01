@@ -4,6 +4,9 @@ RUN curl -sL https://deb.nodesource.com/setup_0.10 | bash -
 
 RUN apt-get install -y nodejs
 
+HEALTHCHECK --interval=1s --timeout=5s --retries=60 \
+    CMD curl --fail http://localhost:3000/ || exit 1
+
 CMD cd /app \
     && bundle install --path vendor/bundle \
     && rake db:migrate \
@@ -12,4 +15,5 @@ CMD cd /app \
     && ./node_modules/.bin/bower install --allow-root \
     && ./node_modules/.bin/gulp build \
     && ls -la public/assets/stylesheets \
-    && bundle exec rails server  -b rubynik -p 3000 -e development
+    && bundle exec rails server  -b 0.0.0.0 -p 3000 -e development
+
