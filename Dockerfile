@@ -8,8 +8,8 @@ CMD cd /app \
     && bundle install --path vendor/bundle \
     && rake db:migrate \
     && rake db:seed \
-    && npm install --allow-root\
-    && ./node_modules/.bin/bower install --allow-root\
+    && npm install --allow-root \
+    && ./node_modules/.bin/bower install --allow-root \
     && ./node_modules/.bin/gulp build \
     && ls -la public/assets/stylesheets \
-    && bundle exec rails server  -b ruby_nik -p 3000 -e development
+    && bundle exec rails server  -b rubynik -p 3000 -e development
