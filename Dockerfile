@@ -7,6 +7,8 @@ RUN apt-get install -y nodejs
 HEALTHCHECK --interval=1s --timeout=5s --retries=60 \
     CMD curl --fail http://localhost:3000/ || exit 1
 
+EXPOSE 3000
+
 CMD bundle install --path vendor/bundle \
     && rake db:migrate \
     && rake db:seed \
