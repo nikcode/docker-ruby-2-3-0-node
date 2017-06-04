@@ -1,6 +1,6 @@
 FROM ruby:2.3.0
 
-RUN curl -sL https://deb.nodesource.com/setup_0.12| bash -
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
 RUN apt-get install -y nodejs
 
@@ -13,8 +13,6 @@ CMD bundle install --without production --path vendor/bundle \
     && rake db:migrate \
     && rake db:seed \
     && npm install --allow-root \
-    && ./node_modules/.bin/bower install --allow-root \
-    && ./node_modules/.bin/gulp build \
     && ls -la public/assets/stylesheets \
     && RAILS_ENV=development rake assets:precompile --trace\
     && bundle exec rails server  -b 0.0.0.0 -p 3000 -e development
